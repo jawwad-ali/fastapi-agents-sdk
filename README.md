@@ -14,7 +14,7 @@ A FastAPI application that integrates Google Gemini AI with the OpenAI Agents SD
 
 ## Prerequisites
 
-- Python 3.14+
+- Python 3.12+
 - Google Gemini API Key ([Get one here](https://aistudio.google.com/apikey))
 
 ## Installation
@@ -209,7 +209,7 @@ Chat with the Gemini agent.
 
 ### Import errors
 - Run `uv pip install -e .` to install all dependencies
-- Make sure you're using Python 3.14+
+- Make sure you're using Python 3.12+
 
 ### Web search not working
 - The web search tool uses DuckDuckGo which doesn't require an API key
