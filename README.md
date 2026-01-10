@@ -44,20 +44,20 @@ cp .env.example .env
 GEMINI_API_KEY=your_actual_api_key_here
 ```
 
-## Running the Application
+## Docker Commands
+### 1. Create an Image
+`docker buidl -t fastapi-container .`
 
-Start the FastAPI server:
-```bash
-python main.py
-```
+### 2. Run the Container
+`docker run -d -p 8000:8000 --name my-fastapi-container my-first-image`
 
-The API will be available at `http://localhost:8000`
-
-## API Documentation
+### Run the Container with .env 
+`docker run -d -p 8000:8000 --env-file .env --name my-fastapi-container my-first-image`
 
 Once running, visit:
 - Swagger UI: `http://localhost:8000/docs`
-- ReDoc: `http://localhost:8000/redoc`
+
+<hr style="border: 1px solid #2323f1;">
 
 ## Available Tools
 
@@ -118,6 +118,8 @@ curl -X POST http://localhost:8000/chat/ \
   }'
 ```
 
+<hr style="border: 1px solid #2323f1;">
+
 ## Example Prompts
 
 Here are some example prompts to try:
@@ -140,72 +142,17 @@ Here are some example prompts to try:
    - "Search for FastAPI tutorials and get metadata from the first result"
    - "Find articles about Python, analyze their titles"
 
-## Project Structure
 
-```
-fastapi-agents-sdk/
-├── main.py              # FastAPI application
-├── connection.py        # Gemini agent setup and configuration
-├── tools.py             # Custom function tools
-├── .env.example         # Environment variables template
-├── .env                 # Your actual environment variables (git-ignored)
-├── pyproject.toml       # Project dependencies
-└── README.md            # This file
-```
-
-## How It Works
-
-1. **Agent Initialization**: The Gemini agent is created with custom function tools
-2. **Request Processing**: When you send a prompt, the agent decides which tools to use
-3. **Tool Execution**: The agent automatically calls the appropriate tools
-4. **Response**: The agent synthesizes the results into a natural language response
-
-## API Endpoints
-
-### `GET /`
-Health check endpoint.
-
-**Response:**
-```json
-{
-  "message": "Hello from fastapi-agents-sdk!",
-  "status": "running"
-}
-```
-
-### `POST /chat/`
-Chat with the Gemini agent.
-
-**Request Body:**
-```json
-{
-  "prompt": "Your question or task here",
-  "model": "gemini-2.5-flash"  // optional
-}
-```
-
-**Response:**
-```json
-{
-  "response": "Agent's response here",
-  "model": "gemini-2.5-flash"
-}
-```
+<hr style="border: 1px solid #2323f1;">
 
 ## Dependencies
 
 - `fastapi` - Web framework
 - `uvicorn` - ASGI server
 - `python-dotenv` - Environment variable management
-- `agents` - OpenAI Agents SDK
+- `openai-agents` - OpenAI Agents SDK
 - `pydantic` - Data validation
 - `duckduckgo-search` - Web search functionality
-
-## Troubleshooting
-
-### "Gemini agent not initialized"
-- Make sure you've set `GEMINI_API_KEY` in your `.env` file
-- Verify the API key is valid at [Google AI Studio](https://aistudio.google.com/apikey)
 
 ### Import errors
 - Run `uv pip install -e .` to install all dependencies
@@ -214,14 +161,6 @@ Chat with the Gemini agent.
 ### Web search not working
 - The web search tool uses DuckDuckGo which doesn't require an API key
 - If you encounter rate limiting, try reducing the number of searches
-
-## Contributing
-
-Feel free to submit issues and enhancement requests!
-
-## License
-
-MIT License
 
 ## Resources
 
